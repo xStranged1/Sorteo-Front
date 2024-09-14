@@ -22,7 +22,6 @@ export const Login = () => {
 
         }
 
-
         const formSchema = z.object({
             name: z.string().min(4, {
                 message: "Organization name must be at least 4 characters.",

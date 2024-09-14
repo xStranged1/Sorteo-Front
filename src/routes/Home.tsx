@@ -24,6 +24,7 @@ export const Home = () => {
             </Button>
 
             <h2>Home</h2>
+            <p className="font-geist-sans">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta commodi sed placeat ipsum maiores aperiam necessitatibus recusandae optio dolorem, sapiente veniam suscipit ex deserunt illo quia doloribus in! Animi, quod.</p>
         </div>
     )
 }

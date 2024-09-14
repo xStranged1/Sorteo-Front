@@ -4,6 +4,7 @@ import "./App.css";
 import { Home } from "./routes/Home";
 import { Login } from "./routes/Login";
 import { Toaster } from "./components/ui/toaster";
+import { CreateOrganization } from "./routes/CreateOrganization";
 
 
 export default function App() {
@@ -18,6 +19,9 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="dashboard" element={<Dashboard />} />
+          {/* <Route path="/organization/:id" element={<Organization />} /> */}
+          <Route path="/organization/create-organization" element={<CreateOrganization />} />
+          <Route path="/organization/*" element={<OrganizationNotFound />} />
           <Route path="home/pepe" element={<Pepe />} />
 
           {/* Using path="*"" means "match anything", so this route
@@ -96,4 +100,21 @@ function NoMatch() {
       </p>
     </div>
   );
+}
+
+const OrganizationNotFound = () => {
+
+  return (
+    <div>
+      <h2>Organization not found</h2>
+      <p>
+        <Link to="/organization">See all public organization</Link>
+
+      </p>
+      <p>
+        <Link to="/organization/create-organization">Create a organization</Link>
+      </p>
+      <Link to="/">Go home</Link>
+    </div>
+  )
 }

@@ -1,8 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* geist-sans-latin-400-normal */
+@font-face {
+  font-family: 'Geist Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(@fontsource/geist-sans/files/geist-sans-latin-400-normal.woff) format('woff'), url(@fontsource/geist-sans/files/geist-sans-latin-400-normal.woff2) format('woff2');
+}
+
+/* geist-sans-latin-700-normal */
+@font-face {
+  font-family: 'Geist Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(@fontsource/geist-sans/files/geist-sans-latin-700-normal.woff) format('woff'), url(@fontsource/geist-sans/files/geist-sans-latin-700-normal.woff2) format('woff2');
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Geist Sans', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
