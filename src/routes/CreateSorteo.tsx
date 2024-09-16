@@ -13,25 +13,28 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Textarea } from "@/components/ui/textarea"
-import { Link, useNavigate } from "react-router-dom"
-import { createOrganization } from "@/services/organization"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { Loader2 } from "lucide-react"
 import { useState } from "react"
 import { useToast } from "@/hooks/use-toast"
 import { ToastAction } from "@/components/ui/toast"
+import { createRaffle } from "@/services/raffle"
+import { formSorteoSchema } from "@/types/types"
 
 
-export function CreateOrganization() {
+export function CreateSorteo() {
 
+    const [loading, setLoading] = useState(false)
     const { toast } = useToast()
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(false)
+    const location = useLocation();
+    const { state } = location;
 
 
 
-    const handleCreateOrganization = async (value: z.infer<typeof formSchema>) => {
+    const handleCreateRaffle = async (value: z.infer<typeof formSorteoSchema>) => {
         console.log("await");
-        const isOk = await createOrganization(value)
+        const isOk = await createRaffle(value)
         setLoading(false)
         if (!isOk) {
             toast({
@@ -51,26 +54,22 @@ export function CreateOrganization() {
         })
         return
     }
+
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    function onSubmit(values: z.infer<typeof formSorteoSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         console.log(values)
-        handleCreateOrganization(values)
+        handleCreateRaffle(values)
     }
 
 
-    const formSchema = z.object({
-        name: z.string().min(4, {
-            message: "Organization name must be at least 4 characters.",
-        }),
-        description: z.string().max(1000, { message: "Too long..." })
-    })
+
     // 1. Define your form.
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<z.infer<typeof formSorteoSchema>>({
+        resolver: zodResolver(formSorteoSchema),
         defaultValues: {
-            name: "",
+            sorteoName: "",
             description: ""
         },
     })
@@ -80,8 +79,8 @@ export function CreateOrganization() {
 
             <Card className="w-[350px]">
                 <CardHeader>
-                    <CardTitle>Create a organization</CardTitle>
-                    <CardDescription>Easy deploy your new organization </CardDescription>
+                    <CardTitle>Create a Sorteo</CardTitle>
+                    <CardDescription>Easy create a public sorteo</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Form {...form}>
@@ -91,17 +90,37 @@ export function CreateOrganization() {
 
                                 <FormField
                                     control={form.control}
-                                    name="name"
+                                    name="sorteoName"
                                     render={({ field }) => (
 
                                         <FormItem>
                                             <div className="flex flex-col space-y-1.5">
-                                                <FormLabel>Organization name</FormLabel>
+                                                <FormLabel>Sorteo name</FormLabel>
                                                 <FormControl>
                                                     <Input placeholder="shadcn" {...field} />
                                                 </FormControl>
                                                 <FormDescription>
                                                     This is your public display organization name.
+                                                </FormDescription>
+                                            </div>
+                                            <FormMessage />
+
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="numberCount"
+                                    render={({ field }) => (
+
+                                        <FormItem>
+                                            <div className="flex flex-col space-y-1.5">
+                                                <FormLabel>Quantity</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="500" {...field} />
+                                                </FormControl>
+                                                <FormDescription>
+                                                    Quantity of numbers to raffle
                                                 </FormDescription>
                                             </div>
                                             <FormMessage />
@@ -118,7 +137,7 @@ export function CreateOrganization() {
                                                 <FormLabel>Description</FormLabel>
                                                 <FormControl>
                                                     <Textarea
-                                                        placeholder="Tell us a little bit about the organization"
+                                                        placeholder="Tell us a little bit about the raffle"
                                                         className="resize-none h-[100px]"
                                                         {...field}
                                                     />

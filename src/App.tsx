@@ -1,10 +1,12 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-import { Button } from "./components/ui/button";
 import "./App.css";
 import { Home } from "./routes/Home";
 import { Login } from "./routes/Login";
 import { Toaster } from "./components/ui/toaster";
 import { CreateOrganization } from "./routes/CreateOrganization";
+import { Organizations } from "./routes/Organizations";
+import { DetailOrganization } from "./routes/DetailOrganization";
+import { CreateSorteo } from "./routes/CreateSorteo";
 
 
 export default function App() {
@@ -19,9 +21,12 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="dashboard" element={<Dashboard />} />
-          {/* <Route path="/organization/:id" element={<Organization />} /> */}
+          <Route path="/organization/:id" element={<DetailOrganization />} />
           <Route path="/organization/create-organization" element={<CreateOrganization />} />
+          <Route path="/organization" element={<Organizations />} />
           <Route path="/organization/*" element={<OrganizationNotFound />} />
+          {/* <Route path="/sorteo" element={<OrganizationNotFound />} /> */}
+          <Route path="/sorteo/create-sorteo" element={<CreateSorteo />} />
           <Route path="home/pepe" element={<Pepe />} />
 
           {/* Using path="*"" means "match anything", so this route
@@ -46,7 +51,7 @@ const Nav = () => {
           <Link to="/login">Login</Link>
         </li>
         <li>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/organization">All organizations</Link>
         </li>
       </ul>
     </nav>
