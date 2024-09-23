@@ -28,13 +28,13 @@ export const formSorteoSchema = z.object({
     sorteoName: z.string().min(4, {
         message: "Sorteo name must be at least 4 characters.",
     }),
-    description: z.string().max(1000, { message: "Too long..." }),
+    description: z.string().max(1000, { message: "Too long..." }).optional(),
     numberCount: z
-        .preprocess((val) => Number(val), z.number().min(0, {
+        .preprocess((val) => Number(val), z.number().min(1, {
             message: "Number count must be a positive number",
         })),
-    startDate: z.preprocess((val) => formatDate(val), z.string().refine(isValidISO8601, {
-        message: 'Start date is invalid'
-    }))
-    ,
+    startDate: z.date()
+        .transform((val) => formatDate(val))
+        .refine(isValidISO8601, 'Date is invalid')
+        .optional()
 })

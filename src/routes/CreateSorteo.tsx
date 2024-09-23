@@ -24,7 +24,6 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 import { Calendar } from "@/components/ui/calendar"
-import { formatDate } from "@/utils/formatDate"
 
 
 export function CreateSorteo() {
@@ -70,12 +69,7 @@ export function CreateSorteo() {
     function onSubmit(values: z.infer<typeof formSorteoSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        console.log(values);
-        let date = values.startDate
-        let formatedDate = formatDate(date)
-        console.log(formatedDate);
-
-        //handleCreateRaffle(values)
+        handleCreateRaffle(values)
     }
 
 
@@ -183,7 +177,7 @@ export function CreateSorteo() {
                                                             )}
                                                         >
                                                             {field.value ? (
-                                                                format(field.value, "PPP")
+                                                                format((field.value), "PPP") // Asegúrate de que field.value es un string válido
                                                             ) : (
                                                                 <span>Pick a date</span>
                                                             )}
@@ -194,11 +188,9 @@ export function CreateSorteo() {
                                                 <PopoverContent className="w-auto p-0" align="start">
                                                     <Calendar
                                                         mode="single"
-                                                        selected={field.value}
+                                                        selected={field.value ? new Date(field.value) : undefined} // Convertir a Date
                                                         onSelect={field.onChange}
-                                                        disabled={(date) =>
-                                                            date > new Date() || date < new Date("1900-01-01")
-                                                        }
+                                                        disabled={(date) => date < new Date()}
                                                         initialFocus
                                                     />
                                                 </PopoverContent>
