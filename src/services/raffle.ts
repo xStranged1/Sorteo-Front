@@ -10,9 +10,10 @@ export const createRaffle = async (value: z.infer<typeof formSorteoSchema>): Pro
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                organizationId: value.organizationId,
                 name: value.sorteoName,
+                dateStart: value.startDate,
                 numberCount: value.numberCount,
-                dateStart: value.dateStart,
                 description: value.description
             })
         });

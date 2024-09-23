@@ -1,4 +1,5 @@
 import { API_URL } from "@/consts"
+import { ErrorT, OrganizationT, OrganizationsT } from "@/types/types";
 
 export const createOrganization = async (value: { name: string, description: string }): Promise<boolean> => {
     try {
@@ -25,8 +26,19 @@ export const createOrganization = async (value: { name: string, description: str
     }
 };
 
-export const getOrganizationsWithSorteos = async () => {
+export const getOrganizationsWithSorteos = async (): Promise<OrganizationsT | false> => {
     const res = await fetch(`${API_URL}/organization`)
     if (res.ok) return res.json()
     return false
 }
+
+export const getOrganizationById = async (id: string): Promise<false | OrganizationT> => {
+    const res = await fetch(`${API_URL}/organization/${id}`)
+    if (!res.ok) return false
+    const organization = await res.json()
+
+    if (res.ok) return organization[0]
+    return false
+}
+
+

@@ -22,7 +22,7 @@ export const Organizations = () => {
             >
                 <CardHeader>
                     <CardTitle>{organization.name}</CardTitle>
-                    <CardDescription className="text-wrap truncate ... ...">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium repellat autem nam voluptatum molestias praesentium sunt dicta, unde consequuntur, deserunt eos, deleniti itaque aut fugit. Optio voluptates rerum odit ab.</CardDescription>
+                    <CardDescription className="text-wrap truncate ... ...">{organization.description}</CardDescription>
                 </CardHeader>
                 {/* <CardContent>
                     <p>Card Content</p>
@@ -59,6 +59,9 @@ export const Organizations = () => {
             const organizations = await getOrganizationsWithSorteos()
             setLoading(false)
             if (organizations) {
+                console.log("organizations");
+                console.log(organizations);
+
                 setOrganizations(organizations)
             }
         }
