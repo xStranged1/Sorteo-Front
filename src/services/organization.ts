@@ -1,5 +1,5 @@
 import { API_URL } from "@/consts"
-import { ErrorT, OrganizationT, OrganizationsT } from "@/types/types";
+import { OrganizationT, OrganizationsT } from "@/types/types";
 
 export const createOrganization = async (value: { name: string, description: string }): Promise<boolean> => {
     try {

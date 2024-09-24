@@ -1,5 +1,5 @@
 import { API_URL } from "@/consts";
-import { formSorteoSchema } from "@/types/types";
+import { SorteoT, formSorteoSchema } from "@/types/types";
 import { z } from "zod";
 
 export const createRaffle = async (value: z.infer<typeof formSorteoSchema>): Promise<boolean> => {
@@ -29,3 +29,12 @@ export const createRaffle = async (value: z.infer<typeof formSorteoSchema>): Pro
         return false;
     }
 };
+
+export const getSorteoById = async (id: string): Promise<false | SorteoT> => {
+    const res = await fetch(`${API_URL}/sorteo/${id}`)
+    if (!res.ok) return false
+    const sorteo = await res.json()
+
+    if (res.ok) return sorteo[0]
+    return false
+}

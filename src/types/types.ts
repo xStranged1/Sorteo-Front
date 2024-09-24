@@ -14,6 +14,7 @@ export interface SorteoT {
     name: string,
     description?: string
     numberCount: string,
+    createdAt?: string
 }
 
 export type OrganizationsT = OrganizationT[]

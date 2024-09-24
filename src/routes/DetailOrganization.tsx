@@ -48,7 +48,7 @@ export const DetailOrganization = () => {
         return (
             <div>
                 {(sorteos.map((sorteo) => (
-                    <div key={sorteo.id}>
+                    <div key={sorteo.id} className="mt-4 mb-4 ">
                         <CardSorteo sorteo={sorteo} />
                     </div>
                 )))}

@@ -7,6 +7,7 @@ import { CreateOrganization } from "./routes/CreateOrganization";
 import { Organizations } from "./routes/Organizations";
 import { DetailOrganization } from "./routes/DetailOrganization";
 import { CreateSorteo } from "./routes/CreateSorteo";
+import { Sorteo } from "./routes/Sorteo";
 
 
 export default function App() {
@@ -25,7 +26,7 @@ export default function App() {
           <Route path="/organization/create-organization" element={<CreateOrganization />} />
           <Route path="/organization" element={<Organizations />} />
           <Route path="/organization/*" element={<OrganizationNotFound />} />
-          {/* <Route path="/sorteo" element={<OrganizationNotFound />} /> */}
+          <Route path="/sorteo/:id" element={<Sorteo />} />
           <Route path="/sorteo/create-sorteo" element={<CreateSorteo />} />
           <Route path="home/pepe" element={<Pepe />} />
 
@@ -42,17 +43,23 @@ export default function App() {
 const Nav = () => {
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-        <li>
-          <Link to="/organization">All organizations</Link>
-        </li>
+    <nav className="p-5">
+      <ul className="flex flex-row gap-5 justify-center items-center">
+        <Link to="/">
+          <li className="hover:bg-slate-300 p-2 rounded-sm">
+            Home
+          </li>
+        </Link>
+        <Link to="/login">
+          <li className="hover:bg-slate-300 p-2 rounded-sm">
+            Login
+          </li>
+        </Link>
+        <Link to="/organization">
+          <li className="hover:bg-slate-300 p-2 rounded-sm">
+            All organizations
+          </li>
+        </Link>
       </ul>
     </nav>
   )
