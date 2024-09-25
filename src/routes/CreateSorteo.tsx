@@ -69,6 +69,7 @@ export function CreateSorteo() {
     function onSubmit(values: z.infer<typeof formSorteoSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
+        setLoading(true)
         handleCreateRaffle(values)
     }
 
@@ -81,7 +82,6 @@ export function CreateSorteo() {
             organizationId: state.id,
             sorteoName: "",
             description: "",
-            numberCount: 0,
         },
     })
 
@@ -165,7 +165,7 @@ export function CreateSorteo() {
                                     name="startDate"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col">
-                                            <FormLabel>Date of birth</FormLabel>
+                                            <FormLabel>Draw date</FormLabel>
                                             <Popover>
                                                 <PopoverTrigger asChild>
                                                     <FormControl>
@@ -196,7 +196,7 @@ export function CreateSorteo() {
                                                 </PopoverContent>
                                             </Popover>
                                             <FormDescription>
-                                                Your date of birth is used to calculate your age.
+                                                Optional day to draw
                                             </FormDescription>
                                             <FormMessage />
                                         </FormItem>
@@ -207,7 +207,7 @@ export function CreateSorteo() {
                             <CardFooter className="flex justify-between mt-5" style={{ marginBottom: -15 }}>
                                 <Link to='/'><Button variant="outline">Cancel</Button></Link>
 
-                                <Button type="submit" onSubmit={() => setLoading(true)} disabled={loading}>
+                                <Button type="submit" disabled={loading}>
                                     {(loading) && (<Loader2 className="mr-2 h-4 w-4 animate-spin" />)}
                                     Create
                                 </Button>

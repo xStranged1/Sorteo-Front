@@ -9,12 +9,62 @@ export interface OrganizationT {
     description?: string
 }
 
+export interface User {
+    id: string;
+    name: string;
+    phone: string;
+    createdAt: string;
+    updatedAt?: string;
+    // SorteoUser: {
+    //     createdAt: string; 
+    //     updatedAt: string; 
+    //     sorteoId: string;
+    //     userId: string;
+    // };
+}
+
+export interface Seller {
+    id: string;
+    name: string;
+    createdAt: string;
+    updatedAt?: string;
+    // SorteoSeller: {
+    //     createdAt: string; 
+    //     updatedAt: string;
+    //     sorteoId: string; 
+    //     sellerId: string; 
+    // };
+}
+
+export interface GridNumber {
+    number: number,
+    raffleNumber?: RaffleNumber
+}
+
+export type GridNumbers = GridNumber[]
+
+export interface RaffleNumber {
+    id: string;
+    number: number;
+    createdAt: string;
+    updatedAt?: string;
+    sorteoId: string;
+    userId: string;
+    sellerId: string;
+}
+
 export interface SorteoT {
     id: number,
     name: string,
     description?: string
     numberCount: string,
-    createdAt?: string
+    availableNumbers: string,
+    createdAt?: string,
+    updatedAt: string;
+    organizationId: string;
+    raffleNumbers: RaffleNumber[];
+    users: User[];
+    sellers: Seller[];
 }
 
 export type OrganizationsT = OrganizationT[]

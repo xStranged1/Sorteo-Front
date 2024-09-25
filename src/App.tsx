@@ -8,6 +8,7 @@ import { Organizations } from "./routes/Organizations";
 import { DetailOrganization } from "./routes/DetailOrganization";
 import { CreateSorteo } from "./routes/CreateSorteo";
 import { Sorteo } from "./routes/Sorteo";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 
 export default function App() {
@@ -43,20 +44,20 @@ export default function App() {
 const Nav = () => {
 
   return (
-    <nav className="p-5">
+    <nav className="p-4 bg-gray-200">
       <ul className="flex flex-row gap-5 justify-center items-center">
         <Link to="/">
-          <li className="hover:bg-slate-300 p-2 rounded-sm">
+          <li className="hover:bg-slate-300 p-2 rounded-sm font-medium ">
             Home
           </li>
         </Link>
         <Link to="/login">
-          <li className="hover:bg-slate-300 p-2 rounded-sm">
+          <li className="hover:bg-slate-300 p-2 rounded-sm font-medium">
             Login
           </li>
         </Link>
         <Link to="/organization">
-          <li className="hover:bg-slate-300 p-2 rounded-sm">
+          <li className="hover:bg-slate-300 p-2 rounded-sm font-medium">
             All organizations
           </li>
         </Link>
@@ -67,8 +68,24 @@ const Nav = () => {
 
 const Footer = () => {
   return (
-    <footer>
-      <h2>Footer</h2>
+    <footer className="p-7 flex flex-row justify-between items-center gap-2 pl-7 pr-7">
+      <Link to='https://github.com/xStranged1' target="_blank"
+        className="flex flex-row justify-center items-center"
+      >
+        <GitHubLogoIcon className="size-6 mr-2" />
+        <h2 className="font-medium">xStranged1</h2>
+      </Link>
+      <div className="flex flex-row justify-center items-center gap-6">
+        <Link to='https://github.com/xStranged1/Sorteo-Front' target="_blank">
+          <p className="text-sm  text-gray-600">This repository</p>
+        </Link>
+        <Link to='https://github.com/xStranged1/Sorteo' target="_blank">
+          <p className="text-sm text-gray-600">API Doc</p>
+        </Link>
+        <Link to='https://github.com/xStranged1/Sorteo' target="_blank">
+          <p className="text-sm text-gray-600">API repository</p>
+        </Link>
+      </div>
     </footer>
   )
 }

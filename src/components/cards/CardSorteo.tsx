@@ -1,7 +1,7 @@
 import { SorteoT } from "@/types/types"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card"
 import { formatDate } from "@/utils/formatDate"
-import { Hash, UserIcon } from "lucide-react";
+import { Hash, TicketCheck, UserIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export const CardSorteo = ({ sorteo }: { sorteo: SorteoT }) => {
@@ -11,6 +11,8 @@ export const CardSorteo = ({ sorteo }: { sorteo: SorteoT }) => {
     const goToSorteoDetail = () => {
         navigate(`/sorteo/${sorteo.id}`, { state: sorteo })
     }
+    console.log("sorteo");
+    console.log(sorteo);
 
     return (
         <div>
@@ -33,6 +35,11 @@ export const CardSorteo = ({ sorteo }: { sorteo: SorteoT }) => {
                     <div className="flex">
                         <Hash size={20} />
                         <p className="text-sm">{sorteo.numberCount}</p>
+                    </div>
+                    <div className="flex justify-center items-center">
+                        <p className="text-sm text-gray-600 mr-2">Numbers remaining: </p>
+                        <TicketCheck size={22} />
+                        <p className="text-sm ml-1"> {sorteo.availableNumbers}</p>
                     </div>
                 </CardFooter>
             </Card>

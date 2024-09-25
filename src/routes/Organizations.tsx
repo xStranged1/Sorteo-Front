@@ -36,9 +36,6 @@ export const Organizations = () => {
 
     const OrganizationsSection = () => {
 
-        console.log("organizations");
-        console.log(organizations);
-
         return (
             <div>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4" style={{ display: 'grid', flexDirection: 'row' }}>
@@ -58,12 +55,7 @@ export const Organizations = () => {
             setLoading(true)
             const organizations = await getOrganizationsWithSorteos()
             setLoading(false)
-            if (organizations) {
-                console.log("organizations");
-                console.log(organizations);
-
-                setOrganizations(organizations)
-            }
+            if (organizations) setOrganizations(organizations)
         }
         getOrganizations()
     }, [])
