@@ -38,6 +38,7 @@ export interface Seller {
 
 export interface GridNumber {
     number: number,
+    isSelected?: boolean,
     raffleNumber?: RaffleNumber
 }
 

@@ -26,3 +26,9 @@ footer{
   align-items: center;
   min-width: 100%;
 }
+
+
+.line-through-thick {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px; /* Ajusta el grosor */
+}
